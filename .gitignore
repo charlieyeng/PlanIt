@@ -1,0 +1,7 @@
+$ cat .gitignore
+# exlcude everything except deirectory src/
+/*
+/*/
+!/src/
+!README.md
+!.gitignore
