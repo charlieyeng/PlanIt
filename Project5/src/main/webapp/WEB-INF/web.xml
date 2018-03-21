@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+         
+         
+         <servlet>
+        <servlet-name>sign</servlet-name>
+
+        <servlet-class>blog.SignBlogServlet</servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+
+        <servlet-name>sign</servlet-name>
+
+        <url-pattern>/sign</url-pattern>
+
+    </servlet-mapping>
+     <servlet>
+        <servlet-name>timeserv</servlet-name>
+
+        <servlet-class>blog.TimeServlet</servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+
+        <servlet-name>timeserv</servlet-name>
+
+        <url-pattern>/timeserv</url-pattern>
+
+    </servlet-mapping>
+     <servlet>
+        <servlet-name>compare</servlet-name>
+
+        <servlet-class>blog.TimeCompare</servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+
+        <servlet-name>compare</servlet-name>
+
+        <url-pattern>/compare</url-pattern>
+
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CalendarJsonServlet</servlet-name>
+
+        <servlet-class>blog.CalendarJsonServlet</servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+
+        <servlet-name>CalendarJsonServlet</servlet-name>
+
+        <url-pattern>/CalendarJsonServlet</url-pattern>
+
+    </servlet-mapping>
+    <servlet>
+		<servlet-name>sub</servlet-name>
+		<servlet-class>blog.SignEmailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>sub</servlet-name>
+		<url-pattern>/sub</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>unsub</servlet-name>
+		<servlet-class>blog.SignEmailUn</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>unsub</servlet-name>
+		<url-pattern>/unsub</url-pattern>
+	</servlet-mapping>
+    
+    <servlet>
+		<servlet-name>cron</servlet-name>
+		<servlet-class>blog.CronServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cron</servlet-name>
+		<url-pattern>/cron</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>email</servlet-name>
+		<servlet-class>blog.EmailSend</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>email</servlet-name>
+		<url-pattern>/email</url-pattern>
+	</servlet-mapping>
+         
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
