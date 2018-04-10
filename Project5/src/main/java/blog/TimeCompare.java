@@ -88,6 +88,8 @@ public class TimeCompare extends HttpServlet {
     		  Date eightcompare = (Date) ex.getProperty("starttime");
     		  if(eightcompare.compareTo(eightam)>=0) {
     		  starttimes.add((Date) ex.getProperty("starttime"));
+    		  
+    		  _logger.info(ex.getProperty("starttime").toString());
     		  endtimes.add((Date) ex.getProperty("endtime"));
     		  }
         }
@@ -122,6 +124,7 @@ public class TimeCompare extends HttpServlet {
     		  Date eightcompare = (Date) ex.getProperty("starttime");
     		  if(eightcompare.compareTo(eightam)>=0) {
     		  starttimes.add((Date) ex.getProperty("starttime"));
+    		  _logger.info(ex.getProperty("starttime").toString());
     		  endtimes.add((Date) ex.getProperty("endtime"));
     		  }
         }
@@ -164,6 +167,7 @@ public class TimeCompare extends HttpServlet {
 	    	for(int increment = timeblock; increment<=check2;increment+=timeblock) {
 	    	cal.setTime(begin);
 	    	availabledates1.add(begin);
+	    	_logger.info("next: "+begin.toString());
 	    	cal.add(Calendar.MINUTE, timeblock);
 	    	begin = cal.getTime();
 	    	availabledates2.add(begin);

@@ -59,7 +59,7 @@ public class TimeServlet extends HttpServlet {
 
         String start[] = req.getParameterValues("start[]");
         String end[] = req.getParameterValues("end[]");
-        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.US);
         Date d = new Date();
         
         for(int i = 0; i<start.length;i++) {
@@ -73,10 +73,16 @@ public class TimeServlet extends HttpServlet {
 			    Calendar calendar = Calendar.getInstance(); // creates a new calendar instance
 			    calendar.setTime(dt);   // assigns calendar to given date 
 			    int hour = calendar.get(Calendar.HOUR_OF_DAY);
+			    if(hour==0) {
+			    	hour=12;
+			    }
 			    int minute = calendar.get(Calendar.MINUTE);
 			    Calendar calendar1 = Calendar.getInstance(); // creates a new calendar instance
 			    calendar.setTime(dt1);   // assigns calendar to given date 
 			    int hour1 = calendar.get(Calendar.HOUR_OF_DAY);
+			    if(hour1==0) {
+			    	hour=12;
+			    }
 			    int minute1 = calendar.get(Calendar.MINUTE);
 			    // Set time fields to zero
 			    cal.set(Calendar.HOUR_OF_DAY,hour);

@@ -22,17 +22,17 @@ public class CalendarJsonServlet extends HttpServlet {
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 ArrayList<CalendarDTO> dts = new ArrayList<>();
+		 CalendarList wholecalendar = CalendarList.getInstance();
 		 ArrayList<Date> d1 = (ArrayList<Date>) request.getSession().getAttribute("startingcal");
 		 ArrayList<Date> d2 = (ArrayList<Date>) request.getSession().getAttribute("endingcal");
 		 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 		 for(int i = 0; i<d1.size(); i++) {
-			 CalendarDTO x = new CalendarDTO();
+			 CalendarEvent x = new CalendarEvent();
 			 x.setId(i);
 			 x.setStart(dateFormat.format(d1.get(i)));
 			 x.setEnd(dateFormat.format(d2.get(i)));
 			 x.setTitle("Freetime");
-			 dts.add(x);
+			 CalendarList.getInstance().addtoList(x);
 		 }
 		
 	 
@@ -40,7 +40,8 @@ public class CalendarJsonServlet extends HttpServlet {
 		 response.setContentType("application/json");
 		 response.setCharacterEncoding("UTF-8");
 		 PrintWriter out = response.getWriter();
-		 out.write(new Gson().toJson(dts));
+		 out.write(new Gson().toJson(CalendarList.getInstance().getList()));
+		 CalendarList.getInstance().getList().clear();
 		 }
 		 
 		}
