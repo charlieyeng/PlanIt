@@ -22,7 +22,7 @@
      <servlet>
         <servlet-name>timeserv</servlet-name>
 
-        <servlet-class>blog.TimeServlet</servlet-class>
+        <servlet-class>blog.TimeServlet1</servlet-class>
 
     </servlet>
 
@@ -94,7 +94,16 @@
 		<servlet-name>email</servlet-name>
 		<url-pattern>/email</url-pattern>
 	</servlet-mapping>
-         
+    
+    <servlet>
+		<servlet-name>events</servlet-name>
+		<servlet-class>blog.EventsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>events</servlet-name>
+		<url-pattern>/events</url-pattern>
+	</servlet-mapping>
+	     
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>

@@ -23,6 +23,8 @@ import com.google.appengine.api.users.UserServiceFactory;
  
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -70,13 +72,30 @@ public class TimeCompare extends HttpServlet {
         now.add(Calendar.WEEK_OF_YEAR, -1);
         d=now.getTime();
         Filter filter = new FilterPredicate("date", Query.FilterOperator.GREATER_THAN,d); */
-        Date eightam = new Date();
+        String date = req.getParameter("date");
+        Date d = new Date();
+        SimpleDateFormat dateF = new SimpleDateFormat("MM/dd/yyyy");
+        try {
+			d = dateF.parse(date); 
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        
+        Date eightam = d;
         Calendar eight = Calendar.getInstance();
         eight.setTime(eightam);
         eight.set(Calendar.HOUR_OF_DAY, 8);
         eight.set(Calendar.MINUTE, 0);
         eight.set(Calendar.SECOND,0);
         eightam = eight.getTime();
+        Date nextday = d;
+        Calendar next = Calendar.getInstance();
+        next.setTime(nextday);
+        next.set(Calendar.HOUR_OF_DAY, 23);
+        next.set(Calendar.MINUTE, 0);
+        next.set(Calendar.SECOND,0);
+        nextday = next.getTime();
         
         Query query = new Query(blogKey1);
         List<Entity> emai = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(20000));
@@ -86,7 +105,7 @@ public class TimeCompare extends HttpServlet {
         }else {
     	  for(Entity ex:emai) {
     		  Date eightcompare = (Date) ex.getProperty("starttime");
-    		  if(eightcompare.compareTo(eightam)>=0) {
+    		  if(eightcompare.compareTo(eightam)>=0 && eightcompare.compareTo(nextday)<=0) {
     		  starttimes.add((Date) ex.getProperty("starttime"));
     		  
     		  _logger.info(ex.getProperty("starttime").toString());
@@ -122,7 +141,7 @@ public class TimeCompare extends HttpServlet {
       }else {
     	  for(Entity ex:emais) {
     		  Date eightcompare = (Date) ex.getProperty("starttime");
-    		  if(eightcompare.compareTo(eightam)>=0) {
+    		  if(eightcompare.compareTo(eightam)>=0 && eightcompare.compareTo(nextday)<=0 ) {
     		  starttimes.add((Date) ex.getProperty("starttime"));
     		  _logger.info(ex.getProperty("starttime").toString());
     		  endtimes.add((Date) ex.getProperty("endtime"));
@@ -140,14 +159,14 @@ public class TimeCompare extends HttpServlet {
         Collections.sort(endtimes);
         ArrayList<Date> availabledates1 = new ArrayList<Date>();
         ArrayList<Date> availabledates2 = new ArrayList<Date>();
-        Date begin = new Date();
+        Date begin = d;
         Calendar cal = Calendar.getInstance();
 	    cal.setTime(begin);
 	    cal.set(Calendar.HOUR_OF_DAY,8);
 	    cal.set(Calendar.MINUTE, 0);
 	    cal.set(Calendar.SECOND, 0);
 	    begin = cal.getTime();
-	    Date finish = new Date();
+	    Date finish = d;
 	    cal.setTime(finish);
 	    cal.set(Calendar.HOUR_OF_DAY,23);
 	    cal.set(Calendar.MINUTE, 0);

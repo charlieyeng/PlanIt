@@ -21,6 +21,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 
  
@@ -118,11 +119,12 @@ public class TimeServlet extends HttpServlet {
 
         // view of the Greetings belonging to the selected Guestbook.
 
-        Query query = new Query(blogKey);
+        //Query query = new Query(blogKey);
         
         
-
+        Query query = new Query("st", blogKey).addSort("starttime", Query.SortDirection.DESCENDING);
         List<Entity> greetings = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(2000));
+        
         
         for(Entity gre : greetings) {
         	System.out.println(gre.getProperty("starttime").toString());

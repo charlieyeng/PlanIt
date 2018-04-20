@@ -29,8 +29,24 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Datepicker - Animations</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+    $( "#anim" ).on( "change", function() {
+      $( "#datepicker" ).datepicker( "option", "showAnim", $( this ).val() );
+    });
+  } );
+  </script>
+  
 </head>
+
 <title>Welcome to PlanIt!</title>
   <head>
     <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
@@ -70,6 +86,11 @@
     
     <form action="/timeserv" method="post">
   Input all of your busy times
+  <table></table>
+  <div id="date1" style="display:inline-block;">
+  Day: 
+  <input type="date" id="datepicker" name="datepicker" size="30">
+  </div>
   <div id="start1" style="display:inline-block;">
   Choose a starting time:
   <input type="time" name="start[]" step="1800" min="8:00" max="23:59">
@@ -97,8 +118,15 @@ Enter your friend's email to find what time's you are both free!
 </div>
 <input type="button" value="Add another email" onClick="addInput1('email');">
 <div>
+
+<div id="date1" style="display:inline-block;">
+  What day do you need? 
+  <input type="date" id="date" name="date" size="30">
+  </div>
 <div>
   How long do you need? Hours:
+  
+  
   <input type="text" name="timeblockh" style="display:inline-block;">
   
   Minutes
@@ -107,10 +135,12 @@ Enter your friend's email to find what time's you are both free!
       <input type="submit" value="Submit time">
   </div>
   
+</form>
 
-
-
-
+<form action = "/events" method="post">
+	<div>
+	<input type = "submit" value="Click to see your events!">
+	</div>
 </form>
 <script>
 function addInput1(divName){
