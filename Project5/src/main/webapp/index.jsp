@@ -44,6 +44,11 @@
     });
   } );
   </script>
+   <script>
+  $( function() {
+    $( "#date" ).datepicker();
+  } );
+  </script>
   
 </head>
 
@@ -89,7 +94,7 @@
   <table></table>
   <div id="date1" style="display:inline-block;">
   Day: 
-  <input type="date" id="datepicker" name="datepicker" size="30">
+  <input type="text" id="datepicker" name="datepicker" size="30">
   </div>
   <div id="start1" style="display:inline-block;">
   Choose a starting time:
@@ -121,8 +126,7 @@ Enter your friend's email to find what time's you are both free!
 
 <div id="date1" style="display:inline-block;">
   What day do you need? 
-  <input type="date" id="date" name="date" size="30">
-  </div>
+  <input type="text" id="date" name = "date">  </div>
 <div>
   How long do you need? Hours:
   

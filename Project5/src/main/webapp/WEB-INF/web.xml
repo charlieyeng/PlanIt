@@ -22,7 +22,7 @@
      <servlet>
         <servlet-name>timeserv</servlet-name>
 
-        <servlet-class>blog.TimeServlet1</servlet-class>
+        <servlet-class>blog.TimeServlet</servlet-class>
 
     </servlet>
 

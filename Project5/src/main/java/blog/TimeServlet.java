@@ -61,12 +61,26 @@ public class TimeServlet extends HttpServlet {
         String start[] = req.getParameterValues("start[]");
         String end[] = req.getParameterValues("end[]");
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.US);
+        String date = req.getParameter("datepicker");
         Date d = new Date();
+        
+        SimpleDateFormat dateF = new SimpleDateFormat("MM/dd/yyyy");
+        try {
+			d = dateF.parse(date); 
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			//resp.sendRedirect("/invalid.jsp");
+			//d = new Date();
+			e1.printStackTrace();
+			resp.sendRedirect("/invalid.jsp");
+			
+			
+		}
         
         for(int i = 0; i<start.length;i++) {
         try {
-			Date dt = new Date();
-			Date dt1 = new Date();
+			Date dt = d;
+			Date dt1 = d;
 			dt= sdf.parse(start[i]);
 			dt1= sdf.parse(end[i]);
 			Calendar cal = Calendar.getInstance();
@@ -121,10 +135,8 @@ public class TimeServlet extends HttpServlet {
 
         //Query query = new Query(blogKey);
         
-        
-        Query query = new Query("st", blogKey).addSort("starttime", Query.SortDirection.DESCENDING);
+        Query query = new Query("st", blogKey);
         List<Entity> greetings = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(2000));
-        
         
         for(Entity gre : greetings) {
         	System.out.println(gre.getProperty("starttime").toString());
