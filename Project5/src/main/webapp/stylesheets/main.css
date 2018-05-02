@@ -2059,6 +2059,27 @@ pre code {
 .form-control + .form-control {
 	margin-top: 12px;
 }
+
+.form-control-hidden {
+  visibility: hidden;
+  width: 100%;
+  padding: 0.375rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.form-control-hidden + .form-control-hidden {
+	margin-top: 12px;
+}
 @media screen and (prefers-reduced-motion: reduce) {
   .form-control {
     -webkit-transition: none;

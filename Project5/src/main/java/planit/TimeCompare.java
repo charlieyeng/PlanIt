@@ -74,10 +74,10 @@ public class TimeCompare extends HttpServlet {
         Filter filter = new FilterPredicate("date", Query.FilterOperator.GREATER_THAN,d); */
         String date = req.getParameter("date");
         Date d = new Date();
-        SimpleDateFormat dateF = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat dateF = new SimpleDateFormat("yyyy-MM-dd");
         try {
 			d = dateF.parse(date); 
-		} catch (ParseException e1) {
+		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}

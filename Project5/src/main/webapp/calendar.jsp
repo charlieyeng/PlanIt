@@ -5,6 +5,7 @@
     <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
     <title>Timetable</title>
     <link rel='stylesheet' href='fullcalendar/fullcalendar.css' />
+    <link rel='stylesheet' href='stylesheets/main.css'/>
    
     <script src='fullcalendar/lib/jquery.min.js'></script>
     <script src='fullcalendar/lib/moment.min.js'></script>

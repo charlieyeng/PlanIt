@@ -64,7 +64,7 @@ public class TimeServlet extends HttpServlet {
         String date = req.getParameter("datepicker");
         Date d = new Date();
         
-        SimpleDateFormat dateF = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat dateF = new SimpleDateFormat("yyyy-MM-dd");
         try {
 			d = dateF.parse(date); 
 		} catch (Exception e1) {
@@ -96,7 +96,7 @@ public class TimeServlet extends HttpServlet {
 			    calendar.setTime(dt1);   // assigns calendar to given date 
 			    int hour1 = calendar.get(Calendar.HOUR_OF_DAY);
 			    if(hour1==0) {
-			    	hour=12;
+			    	hour1=12;
 			    }
 			    int minute1 = calendar.get(Calendar.MINUTE);
 			    // Set time fields to zero
