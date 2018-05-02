@@ -1,4 +1,4 @@
-package blog;
+package planit;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ for(String tosend : d3) {
     		
       	    try{  
       	    	Message message = new MimeMessage(session);
-           	  message.setFrom(new InternetAddress("anything@elated-emitter-197723.appspotmail.com")); 
+           	  message.setFrom(new InternetAddress("anything@planit-197222.appspotmail.com")); 
             message.setRecipient(Message.RecipientType.TO, new InternetAddress((String)tosend));  
             message.setSubject("PlanIt Confirmation");  
             message.setText(newemails.toString());  

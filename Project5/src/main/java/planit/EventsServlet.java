@@ -1,4 +1,4 @@
-package blog;
+package planit;
 import com.google.appengine.api.datastore.DatastoreService;
 
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -44,7 +44,9 @@ public class EventsServlet extends HttpServlet{
                 throws IOException {
 
         UserService userService = UserServiceFactory.getUserService();
-
+        String [] monthNames = {"January", "February", "March", "April", "May", "June",
+      		  "July", "August", "September", "October", "November", "December"};
+      String [] days = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
         User user = userService.getCurrentUser();
         String email = user.getEmail();
         _logger.info(email);
@@ -62,10 +64,10 @@ public class EventsServlet extends HttpServlet{
         // Run an ancestor query to ensure we see the most up-to-date
 
         // view of the Greetings belonging to the selected Guestbook.
-        try {
-        //Query query = new Query("st", blogKey).addSort("starttime", Query.SortDirection.DESCENDING);
+//        try {
+        Query query = new Query("st", blogKey).addSort("starttime", Query.SortDirection.DESCENDING);
        
-        Query query = new Query(blogKey);
+        //Query query = new Query(blogKey);
         
 
         List<Entity> greetings = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(2000));
@@ -88,16 +90,72 @@ public class EventsServlet extends HttpServlet{
         	e1.add((Date) gre.getProperty("endtime"));
         	System.out.println(gre.getProperty("email").toString());
         }
-        req.getSession().setAttribute("start", startTimes);
-        req.getSession().setAttribute("end", endTimes);
+        
+        
+        ArrayList<String> timeasstring1 = new ArrayList<>();
+        ArrayList<String> timeasstring2 = new ArrayList<>();
+    	for(int k = 0; k<startTimes.size();k++) {
+    		String am = "AM";
+    		Calendar calen = Calendar.getInstance();
+    		calen.setTime(s1.get(k));
+    		int hourtry = calen.get(Calendar.HOUR_OF_DAY);
+    		int hourtry1 = calen.get(Calendar.HOUR);
+    		if(hourtry!=hourtry1) {
+    			am = "PM";
+    		}
+    		if(hourtry1==hourtry && hourtry==12) {
+    			am="PM";
+    		}
+    		if(hourtry1==0) {
+    			hourtry1 = 12;
+    		}
+    		String h = Integer.toString(hourtry1);
+    		if(h.length()!=2) {
+    			h ="0"+h;
+    		}
+    		String m = Integer.toString(calen.get(Calendar.MINUTE));
+    		if(m.length()!=2) {
+    			m ="0"+m;
+    		}
+    		
+    		String varx = days[calen.get(Calendar.DAY_OF_WEEK)-1] + " " +monthNames[calen.get(Calendar.MONTH)] + " " + Integer.toString(calen.get(Calendar.DAY_OF_MONTH)) + " " + h + ":" + m + " " + am;
+    		timeasstring1.add(varx);
+    		am = "AM";
+    		calen.setTime(e1.get(k));
+    		hourtry = calen.get(Calendar.HOUR_OF_DAY);
+    		hourtry1 = calen.get(Calendar.HOUR);
+    		if(hourtry!=hourtry1) {
+    			am = "PM";
+    		}
+    		if(hourtry1==hourtry && hourtry==12) {
+    			am="PM";
+    		}
+    		if(hourtry1==0) {
+    			hourtry1 = 12;
+    		}
+    		h = Integer.toString(hourtry1);
+    		if(h.length()!=2) {
+    			h ="0"+h;
+    		}
+    		m = Integer.toString(calen.get(Calendar.MINUTE));
+    		if(m.length()!=2) {
+    			m ="0"+m;
+    		}
+    		varx = days[calen.get(Calendar.DAY_OF_WEEK)-1] + " " +monthNames[calen.get(Calendar.MONTH)] + " " + Integer.toString(calen.get(Calendar.DAY_OF_MONTH)) + " " + h + ":" + m + " " + am;
+    		timeasstring2.add(varx);
+    	}
+        
+        
+        req.getSession().setAttribute("start", timeasstring1);
+        req.getSession().setAttribute("end", timeasstring2);
         req.getSession().setAttribute("startingcal", s1);
         req.getSession().setAttribute("endingcal", e1);
-        }
-        catch (Exception e) {
-        	resp.sendRedirect("/errors.jsp");
-        	e.printStackTrace();
-        	return;
-        }
+     //   }
+//        catch (Exception e) {
+//        	resp.sendRedirect("/errors.jsp");
+//        	e.printStackTrace();
+//        	return;
+//        }
         resp.sendRedirect("/events.jsp");
 
     }

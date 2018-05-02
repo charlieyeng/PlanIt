@@ -108,9 +108,7 @@
   </div>
   
   <div style="clear:both;">&nbsp;</div>
-  <div>
-  <input type="button" value="Add another time input" onClick="addInput('start1', 'end1');">
-  </div>
+
   
   <div>
       <input type="submit" value="Submit time">

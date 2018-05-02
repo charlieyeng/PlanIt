@@ -1,4 +1,4 @@
-package blog;
+package planit;
 
 
 
@@ -7,11 +7,12 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 
 import com.google.appengine.api.datastore.Entity;
-
+import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 
 import com.google.appengine.api.datastore.KeyFactory;
-
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.users.User;
 
 import com.google.appengine.api.users.UserService;
@@ -35,7 +36,7 @@ import javax.servlet.http.HttpServletResponse;
 
  
 
-public class SignBlogServlet extends HttpServlet {
+public class SignEmailServlet extends HttpServlet {
 	 
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -49,33 +50,33 @@ public class SignBlogServlet extends HttpServlet {
  
 
 
-        String blogName = req.getParameter("blogName");
+        String email = user.getEmail();
 
-        Key blogKey = KeyFactory.createKey("Blog", blogName);
+        Key eKey = KeyFactory.createKey("Email", email);
         
-        String title = req.getParameter("title");
-
-        String content = req.getParameter("content");
-
-        Date date = new Date();
-
-        Entity greeting = new Entity("Greeting", blogKey);
-
-        greeting.setProperty("user", user);
-
-        greeting.setProperty("date", date);
         
-        greeting.setProperty("title", title);
+        
+        Entity em = new Entity("email", email);
 
-        greeting.setProperty("content", content);
-
- 
+        em.setProperty("user", email);
 
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        
+        Query query1 = new Query("email");
+      	List<Entity> emais = datastore.prepare(query1).asList(FetchOptions.Builder.withLimit(20000));
+      	boolean x = false;
+      	for(Entity ex : emais) {
+      		if(ex.getProperty("user").equals(email)) {
+      			x=true;
+      		}
+      	}
+      	if(!x) {
 
-        datastore.put(greeting);
+        datastore.put(em);
+      	}
 
- 
+   //   Test22 letsee = new Test22();
+  //    letsee.doGet(req, resp);
 
         resp.sendRedirect("/index.jsp");
 

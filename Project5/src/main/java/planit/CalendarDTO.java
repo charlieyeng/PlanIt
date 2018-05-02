@@ -1,4 +1,4 @@
-package blog;
+package planit;
 public class CalendarDTO {
     public int id;
     public String title;

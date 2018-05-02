@@ -1,4 +1,4 @@
-package blog;
+package planit;
 
 import java.io.IOException;
 import java.io.PrintWriter;

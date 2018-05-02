@@ -5,24 +5,11 @@
          version="3.1">
          
          
-         <servlet>
-        <servlet-name>sign</servlet-name>
-
-        <servlet-class>blog.SignBlogServlet</servlet-class>
-
-    </servlet>
-
-    <servlet-mapping>
-
-        <servlet-name>sign</servlet-name>
-
-        <url-pattern>/sign</url-pattern>
-
-    </servlet-mapping>
+         
      <servlet>
         <servlet-name>timeserv</servlet-name>
 
-        <servlet-class>blog.TimeServlet</servlet-class>
+        <servlet-class>planit.TimeServlet</servlet-class>
 
     </servlet>
 
@@ -36,7 +23,7 @@
      <servlet>
         <servlet-name>compare</servlet-name>
 
-        <servlet-class>blog.TimeCompare</servlet-class>
+        <servlet-class>planit.TimeCompare</servlet-class>
 
     </servlet>
 
@@ -50,7 +37,7 @@
     <servlet>
         <servlet-name>CalendarJsonServlet</servlet-name>
 
-        <servlet-class>blog.CalendarJsonServlet</servlet-class>
+        <servlet-class>planit.CalendarJsonServlet</servlet-class>
 
     </servlet>
 
@@ -63,7 +50,7 @@
     </servlet-mapping>
     <servlet>
 		<servlet-name>sub</servlet-name>
-		<servlet-class>blog.SignEmailServlet</servlet-class>
+		<servlet-class>planit.SignEmailServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>sub</servlet-name>
@@ -71,7 +58,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>unsub</servlet-name>
-		<servlet-class>blog.SignEmailUn</servlet-class>
+		<servlet-class>planit.SignEmailUn</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>unsub</servlet-name>
@@ -80,7 +67,7 @@
     
     <servlet>
 		<servlet-name>cron</servlet-name>
-		<servlet-class>blog.CronServlet</servlet-class>
+		<servlet-class>planit.CronServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>cron</servlet-name>
@@ -88,7 +75,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>email</servlet-name>
-		<servlet-class>blog.EmailSend</servlet-class>
+		<servlet-class>planit.EmailSend</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>email</servlet-name>
@@ -97,7 +84,7 @@
     
     <servlet>
 		<servlet-name>events</servlet-name>
-		<servlet-class>blog.EventsServlet</servlet-class>
+		<servlet-class>planit.EventsServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>events</servlet-name>
@@ -105,6 +92,6 @@
 	</servlet-mapping>
 	     
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>bryce.jsp</welcome-file>
   </welcome-file-list>
 </web-app>

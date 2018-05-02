@@ -1,4 +1,4 @@
-package blog;
+package planit;
 
 
 
@@ -60,18 +60,18 @@ public class TimeServlet extends HttpServlet {
 
         String start[] = req.getParameterValues("start[]");
         String end[] = req.getParameterValues("end[]");
-        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.US);
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
         String date = req.getParameter("datepicker");
         Date d = new Date();
         
         SimpleDateFormat dateF = new SimpleDateFormat("MM/dd/yyyy");
         try {
 			d = dateF.parse(date); 
-		} catch (ParseException e1) {
+		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			//resp.sendRedirect("/invalid.jsp");
 			//d = new Date();
-			e1.printStackTrace();
+			//e1.printStackTrace();
 			resp.sendRedirect("/invalid.jsp");
 			
 			
@@ -122,9 +122,10 @@ public class TimeServlet extends HttpServlet {
 	        _logger.info(dt1.toString());
 	        
 	        datastore.put(em);
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			resp.sendRedirect("/errors.jsp");
+			//e.printStackTrace();
 		}
         }
         Key blogKey = KeyFactory.createKey("Stamp", email);
@@ -132,10 +133,10 @@ public class TimeServlet extends HttpServlet {
         // Run an ancestor query to ensure we see the most up-to-date
 
         // view of the Greetings belonging to the selected Guestbook.
+ 
+        Query query = new Query("st",blogKey);
+        //Query query = new Query("st", blogKey).addSort("starttime", Query.SortDirection.ASCENDING);
 
-        //Query query = new Query(blogKey);
-        
-        Query query = new Query("st", blogKey);
         List<Entity> greetings = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(2000));
         
         for(Entity gre : greetings) {
